@@ -1,8 +1,8 @@
-class CreateDiarys < ActiveRecord::Migration[5.0]
+class CreateDiaries < ActiveRecord::Migration[5.0]
   def change
-    create_table :diarys do |t|
+    create_table :diaries do |t|
       t.integer :user_id
       t.integer :fortune_id
-    end 
+    end
   end
 end
