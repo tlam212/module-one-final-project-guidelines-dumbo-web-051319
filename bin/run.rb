@@ -24,10 +24,13 @@ end
 # teaser_page
 new_page
 puts "    Login below for access:"
-prompt.ask('    Username:')
-prompt.ask('    Password:')
+name = prompt.ask('    Username:')
+password = prompt.ask('    Password:')
+new_user = User.create(name: name, password: password)
 sleep(1)
 puts`clear`
+
+
 
 # page_one
 
@@ -109,12 +112,27 @@ UserInterface.background_art
 sleep(2)
 puts`clear`
 
-# fortune
-#
-
-
-
 # page_eleven
+new_page
+UserInterface.background_art
+sleep(2)
+puts`clear`
+
+# page_twelve
+
+puts Fortune.random
+# if user_choices.include?("love")
+#   puts Fortune.random
+#   Diary.new(user: new_user, fortune: love_fortune)
+# elsif user_choices.include?("wealth")
+#   puts Fortune.random
+#   Diary.new(user: new_user, fortune: wealth_fortune)
+# elsif user_choices.include?("career")
+#   puts Fortune.random
+#   Diary.new(user: new_user, fortune: career_fortune)
+# end
+
+
 
 new_page
 prompt.select("WHAT WOULD YOU LIKE TO DO NEXT?", %w(Save Edit Delete))

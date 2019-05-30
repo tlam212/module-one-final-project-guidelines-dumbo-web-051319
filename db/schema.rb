@@ -17,11 +17,6 @@ ActiveRecord::Schema.define(version: 20190529205711) do
     t.integer "fortune_id"
   end
 
-  create_table "diarys", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "fortune_id"
-  end
-
   create_table "fortunes", force: :cascade do |t|
     t.string "quote"
   end
