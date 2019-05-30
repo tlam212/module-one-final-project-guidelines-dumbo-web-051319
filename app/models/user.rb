@@ -32,4 +32,28 @@ class User < ActiveRecord::Base
     puts "Yes, many have questions about their career...#{Fortune.all.sample.quote}"
   end
 
+  def saved_love
+    self.fortunes.select {|fortune| fortune.fortune_type == "love"}
+  end
+
+  def love_quotes
+    self.saved_love.map{|fortune| fortune.quote}
+  end
+
+  def saved_wealth
+    self.fortunes.select {|fortune| fortune.fortune_type == "wealth"}
+  end
+
+  def wealth_quotes
+    self.saved_wealth.map {|fortune| fortune.quote }
+  end
+
+  def saved_career
+    self.fortunes.select {|fortune| fortune.fortune_type == "career"}
+  end
+
+  def career_quotes
+    self.saved_career.map {|fortune| fortune.quote}
+  end
+
 end
