@@ -4,5 +4,7 @@ source "https://rubygems.org"
 gem "sinatra-activerecord"
 gem "sqlite3"
 gem "pry"
+gem 'tty-color'
+gem 'tty-prompt'
 gem "require_all"
-gem "tty-prompt"
+gem 'faker'
