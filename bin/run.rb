@@ -20,13 +20,18 @@ end
 #   end
 # end
 
-
 # teaser_page
 new_page
 puts "    Login below for access:"
 name = prompt.ask('    Username:')
-password = prompt.ask('    Password:')
-new_user = User.create(name: name, password: password)
+password = prompt.mask('    Password:')
+if User.find_by(name: name) && User.find_by(password: password)
+  puts "Welcome back #{name}"
+  current_user = User.find_by(name: name)
+else
+current_user = User.create(name: name, password: password)
+end
+
 sleep(1)
 puts`clear`
 
@@ -99,7 +104,7 @@ puts`clear`
 
 new_page
 choices = %w(Love Wealth Career)
-user_choices = prompt.multi_select("SELECT YOUR FORTUNE", choices)
+user_choice = prompt.select("SELECT YOUR FORTUNE", choices)
 # choose_fortune(user_choices)
 sleep(1)
 puts`clear`
@@ -120,24 +125,25 @@ puts`clear`
 
 # page_twelve
 
-puts Fortune.random
-# if user_choices.include?("love")
-#   puts Fortune.random
-#   Diary.new(user: new_user, fortune: love_fortune)
-# elsif user_choices.include?("wealth")
-#   puts Fortune.random
-#   Diary.new(user: new_user, fortune: wealth_fortune)
-# elsif user_choices.include?("career")
-#   puts Fortune.random
-#   Diary.new(user: new_user, fortune: career_fortune)
-# end
+#
+if user_choice == "Love"
+  current_user.love
+elsif user_choice == "Wealth"
+  current_user.wealth
+elsif user_choice == "Career"
+  current_user.career
+end
 
 
 
 new_page
-prompt.select("WHAT WOULD YOU LIKE TO DO NEXT?", %w(Save Edit Delete))
+delete_choice = prompt.select("DO WANT TO FORGET THIS VISION OF THE FUTURE?", %w(YES, NO))
 sleep(1)
 puts`clear`
+
+if delete_choice =="YES"
+  current_user.destroy_last
+end
 
 # page_twelve
 UserInterface.background_art
@@ -146,4 +152,8 @@ puts`clear`
 
 # page_thirteen
 new_page
-prompt.select("WOULD YOU LIKE TO SEE ALL OF YOUR FORTUNES?", %w(YES NO))
+all_fort = prompt.select("WOULD YOU LIKE TO SEE ALL OF YOUR FORTUNES?", %w(YES NO))
+
+if all_fort == "YES"
+  puts current_user.fortune_quotes
+end
