@@ -7,18 +7,6 @@ def new_page
   end
 end
 
-# def choose_fortune(user_choices)
-#   user_choices.each do |choice|
-#     if choice == "Love"
-#       User.love
-#     elsif
-#       choice == "Wealth"
-#       User.wealth
-#     else
-#       User.career
-#     end
-#   end
-# end
 
 
 # teaser_page
@@ -26,7 +14,6 @@ new_page
 puts "    Login below for access:"
 name = prompt.ask('    Username:')
 password = prompt.ask('    Password:')
-new_user = User.create(name: name, password: password)
 sleep(1)
 puts`clear`
 
@@ -100,7 +87,7 @@ puts`clear`
 new_page
 choices = %w(Love Wealth Career)
 user_choices = prompt.multi_select("SELECT YOUR FORTUNE", choices)
-# choose_fortune(user_choices)
+choose_fortune(user_choices)
 sleep(1)
 puts`clear`
 
@@ -120,17 +107,6 @@ puts`clear`
 
 # page_twelve
 
-puts Fortune.random
-# if user_choices.include?("love")
-#   puts Fortune.random
-#   Diary.new(user: new_user, fortune: love_fortune)
-# elsif user_choices.include?("wealth")
-#   puts Fortune.random
-#   Diary.new(user: new_user, fortune: wealth_fortune)
-# elsif user_choices.include?("career")
-#   puts Fortune.random
-#   Diary.new(user: new_user, fortune: career_fortune)
-# end
 
 
 
