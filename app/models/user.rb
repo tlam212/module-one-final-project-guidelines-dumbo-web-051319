@@ -10,10 +10,6 @@ class User < ActiveRecord::Base
     self.fortune_quotes.count
   end
 
-  def create_new_diary
-    Diary.create(user_id: self.id, fortune_id: Fortune.all.sample.id)
-  end
-
   def destroy_last
     self.fortunes.last.destroy
   end

@@ -106,7 +106,6 @@ new_page
 choices = %w(Love Wealth Career)
 
 user_choice = prompt.select("SELECT YOUR FORTUNE", choices)
-
 # choose_fortune(user_choices)
 sleep(1)
 puts`clear`
@@ -136,8 +135,6 @@ elsif user_choice == "Career"
   current_user.career
 end
 
-
-
 new_page
 hodor_choice = prompt.select("DO YOU DISLIKE THIS VISION OF THE FUTURE?", %w(YES NO))
 sleep(1)
@@ -150,6 +147,7 @@ if hodor_choice == "YES"
 end
 
 new_page
+
 delete_choice = prompt.select("DO WANT TO FORGET THIS TERRIBLE NEW VISION OF THE FUTURE?", %w(YES NO))
 sleep(1)
 puts`clear`
@@ -157,7 +155,6 @@ puts`clear`
 if delete_choice == "YES"
   current_user.fortunes.last.destroy
 end
-
 
 # page_twelve
 UserInterface.background_art
@@ -172,6 +169,7 @@ all_fort = prompt.select("WOULD YOU LIKE TO SEE ALL OF YOUR FORTUNES?", %w(YES N
 if all_fort == "YES"
   puts current_user.fortune_quotes
 end
+
 #
 # new_page
 # all_fort = prompt.select("WOULD YOU LIKE ANOTHER GLIMPSE INTO THE FUTURE?", %w(YES NO))
