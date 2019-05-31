@@ -8,7 +8,6 @@ def new_page
 end
 
 
-
 # teaser_page
 new_page
 puts "    Login below for access:"
@@ -118,34 +117,59 @@ UserInterface.background_art
 sleep(4)
 puts`clear`
 
+# page_twelve
 
+#
+if user_choice == "Love"
+  current_user.love
+elsif user_choice == "Wealth"
+  current_user.wealth
+elsif user_choice == "Career"
+  current_user.career
+end
 
+new_page
+hodor_choice = prompt.select("DO YOU DISLIKE THIS VISION OF THE FUTURE?", %w(YES NO))
+sleep(1)
+puts`clear`
+
+if hodor_choice == "YES"
+  last_fortune = current_user.fortunes.last
+  last_fortune.update(quote: "Your new future is bleak... all I see is HODOR HODOR HODOR")
+  puts last_fortune.quote
+end
+
+new_page
+
+delete_choice = prompt.select("DO WANT TO FORGET THIS TERRIBLE NEW VISION OF THE FUTURE?", %w(YES NO))
+sleep(1)
+puts`clear`
+
+if delete_choice == "YES"
+  current_user.fortunes.last.destroy
+end
+
+# page_twelve
+UserInterface.background_art
+sleep(2)
+puts`clear`
+
+# page_thirteen
+new_page
+
+all_fort = prompt.select("WOULD YOU LIKE TO SEE ALL OF YOUR FORTUNES?", %w(YES NO))
+
+if all_fort == "YES"
+  puts current_user.fortune_quotes
+end
+
+#
 # new_page
-# user_decision = prompt.select("WHAT WOULD YOU LIKE TO DO NEXT?", %w(Save Edit Delete))
+# all_fort = prompt.select("WOULD YOU LIKE ANOTHER GLIMPSE INTO THE FUTURE?", %w(YES NO))
 #
-# sleep(1)
-# puts`clear`
-#
-# if user_decision == "Delete"
-#   current_user.destroy_last
-#
-#
-# UserInterface.background_art
-# sleep(2)
-# puts`clear`
-#
-#
-#
-# new_page
-# all_fort = prompt.select("WOULD YOU LIKE TO SEE ALL OF YOUR FORTUNES?", %w(YES NO))
-# sleep(1)
-# puts`clear`
-#
-# new_page
 # if all_fort == "YES"
 #   puts current_user.fortune_quotes
 # end
-# UserInterface.background_art
-# sleep(3)
-# puts `clear`
-# end
+
+new_page
+puts "Goodbye........."
