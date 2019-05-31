@@ -104,7 +104,9 @@ puts`clear`
 
 new_page
 choices = %w(Love Wealth Career)
+
 user_choice = prompt.select("SELECT YOUR FORTUNE", choices)
+
 # choose_fortune(user_choices)
 sleep(1)
 puts`clear`
@@ -164,6 +166,7 @@ puts`clear`
 
 # page_thirteen
 new_page
+
 all_fort = prompt.select("WOULD YOU LIKE TO SEE ALL OF YOUR FORTUNES?", %w(YES NO))
 
 if all_fort == "YES"
