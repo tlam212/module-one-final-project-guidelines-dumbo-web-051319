@@ -1,6 +1,6 @@
 require_relative '../config/environment'
 prompt = TTY::Prompt.new
-@current_user = nil
+
 
 def new_page
   3.times do puts""
@@ -13,7 +13,13 @@ end
 new_page
 puts "    Login below for access:"
 name = prompt.ask('    Username:')
-password = prompt.ask('    Password:')
+password = prompt.mask('    Password:')
+if User.find_by(name: name) && User.find_by(password: password)
+  puts "Welcome back #{name}"
+  current_user = User.find_by(name: name)
+else
+current_user = User.create(name: name, password: password)
+end
 sleep(1)
 puts`clear`
 
@@ -86,8 +92,7 @@ puts`clear`
 
 new_page
 choices = %w(Love Wealth Career)
-user_choices = prompt.multi_select("SELECT YOUR FORTUNE", choices)
-choose_fortune(user_choices)
+user_choice = prompt.select("SELECT YOUR FORTUNE", choices)
 sleep(1)
 puts`clear`
 
@@ -100,26 +105,47 @@ sleep(2)
 puts`clear`
 
 # page_eleven
+
 new_page
+if user_choice == "Love"
+current_user.love
+elsif user_choice == "Wealth"
+current_user.wealth
+elsif user_choice == "Career"
+current_user.career
+end
 UserInterface.background_art
-sleep(2)
+sleep(4)
 puts`clear`
 
-# page_twelve
 
 
-
-
-new_page
-prompt.select("WHAT WOULD YOU LIKE TO DO NEXT?", %w(Save Edit Delete))
-sleep(1)
-puts`clear`
-
-# page_twelve
-UserInterface.background_art
-sleep(2)
-puts`clear`
-
-# page_thirteen
-new_page
-prompt.select("WOULD YOU LIKE TO SEE ALL OF YOUR FORTUNES?", %w(YES NO))
+# new_page
+# user_decision = prompt.select("WHAT WOULD YOU LIKE TO DO NEXT?", %w(Save Edit Delete))
+#
+# sleep(1)
+# puts`clear`
+#
+# if user_decision == "Delete"
+#   current_user.destroy_last
+#
+#
+# UserInterface.background_art
+# sleep(2)
+# puts`clear`
+#
+#
+#
+# new_page
+# all_fort = prompt.select("WOULD YOU LIKE TO SEE ALL OF YOUR FORTUNES?", %w(YES NO))
+# sleep(1)
+# puts`clear`
+#
+# new_page
+# if all_fort == "YES"
+#   puts current_user.fortune_quotes
+# end
+# UserInterface.background_art
+# sleep(3)
+# puts `clear`
+# end
