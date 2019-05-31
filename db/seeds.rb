@@ -14,6 +14,10 @@
 #   Fortune.create(quote: Faker::TvShows::Simpsons.unique.quote)
 # end
 #
+# # 15.times do
+# #    Fortune.create(quote: Faker::TvShows::BojackHorseman.unique.quote)
+# # end
+#
 # 15.times do
 #   Fortune.create(quote: Faker::TvShows::Buffy.unique.quote)
 # end
