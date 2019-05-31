@@ -176,3 +176,6 @@ end
 # if all_fort == "YES"
 #   puts current_user.fortune_quotes
 # end
+
+new_page
+puts "Goodbye........."
